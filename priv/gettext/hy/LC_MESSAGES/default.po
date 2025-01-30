@@ -1,0 +1,93 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: hy\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/glpi_anontickets_web/components/core_components.ex:482
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr ""
+
+#: lib/glpi_anontickets_web/components/core_components.ex:160
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:37
+#, elixir-autogen, elixir-format
+msgid "Description"
+msgstr "Նկարագրություն"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Email"
+msgstr "Էլփոստի հասցեն"
+
+#: lib/glpi_anontickets_web/components/core_components.ex:151
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/glpi_anontickets_web/components/core_components.ex:172
+#, elixir-autogen, elixir-format
+msgid "Hang in there while we get back on track"
+msgstr ""
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Issue Type"
+msgstr "Խնդրի տեսակ"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Location"
+msgstr "Տարածք"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "Report an issue"
+msgstr "Զեկուցել խնդրի մասին"
+
+#: lib/glpi_anontickets_web/components/core_components.ex:167
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr ""
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Submit"
+msgstr "Ուղարկել"
+
+#: lib/glpi_anontickets_web/components/core_components.ex:150
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr ""
+
+#: lib/glpi_anontickets_web/components/core_components.ex:155
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:39
+#, elixir-autogen, elixir-format
+msgid "You can describe your issue in details here..."
+msgstr "Կարող եք մանրամասն նկարագրել ձեր խնդիրը այստեղ…"
+
+#: lib/glpi_anontickets_web/components/core_components.ex:76
+#: lib/glpi_anontickets_web/components/core_components.ex:130
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""
+
+#: lib/glpi_anontickets_web/controllers/page_html/submitted.html.heex:3
+#, elixir-autogen, elixir-format
+msgid "Your request has been submitted!"
+msgstr "Ձեր զեկույցը ընդունված է"

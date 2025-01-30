@@ -1,0 +1,52 @@
+<!-- Comment Form -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto" id='form'>
+  <div class="mx-auto max-w-2xl">
+    <div class="text-center">
+      <h2 class="text-xl text-gray-800 font-bold sm:text-3xl">
+        <%= gettext "Report an issue" %>
+      </h2>
+    </div>
+
+    <!-- Card -->
+    <div class="mt-5 p-4 relative z-10 bg-white border rounded-xl sm:mt-10 md:p-10 ">
+      <form hx-post='/helpdesk' hx-target='#form' >
+        <div class="mb-4 sm:mb-8">
+          <label for="email-input" class="block mb-2 text-sm font-medium"><%= gettext "Email" %></label>
+          <input type="email" name="email" id="email-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="bob@example.com" required>
+        </div>
+
+        <div class="mb-4 sm:mb-8">
+          <label for="itil-category-select" class="block mb-2 text-sm font-medium"><%= gettext "Issue Type" %></label>
+        <select id="itil-category-select" name="itil" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+          <%= for category <- @itil_categories do %>
+          <option value={category.id}><%= category.name %></option>
+          <% end %>
+        </select>
+        </div>
+
+<div class="mb-4 sm:mb-8">
+          <label for="location-select" class="block mb-2 text-sm font-medium"><%= gettext "Location" %></label>
+        <select id="location-select" name="location" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+          <%= for location <- @locations do %>
+          <option value={location.id}><%= location.name %></option>
+          <% end %>
+        </select>
+        </div>
+
+        <div>
+          <label for="content-textarea" class="block mb-2 text-sm font-medium"><%= gettext "Description" %></label>
+          <div class="mt-1">
+            <textarea id="content-textarea" name="content" rows="3" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder={"#{ gettext "You can describe your issue in details here..." }"}></textarea>
+          </div>
+        </div>
+
+        <div class="mt-6 grid">
+          <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"><%= gettext "Submit" %></button>
+          <img id="loading" class="htmx-loading w-full size-12" src={~p"/images/loading.svg"} />
+        </div>
+      </form>
+    </div>
+    <!-- End Card -->
+  </div>
+</div>
+<!-- End Comment Form -->
