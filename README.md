@@ -1,5 +1,20 @@
 # GlpiAnontickets
 
+This is a web application that allows you to submit tickets to GLPI via the REST API.
+
+A proper documentation is needed, but for now, don't forget to set the following environment variables:
+
+  * `GLPI_ANONTICKET_ENDPOINT`
+  * `GLPI_ANONTICKET_APP_TOKEN`
+  * `GLPI_ANONTICKET_AUTH_TOKEN`
+
+Optionally, you can also set:
+
+  * `GLPI_ANONTICKET_NAME`
+  * `GLPI_ANONTICKET_ICON`
+  * `GLPI_ANONTICKET_LOCALE`
+
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
