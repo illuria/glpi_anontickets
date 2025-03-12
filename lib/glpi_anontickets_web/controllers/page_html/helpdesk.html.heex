@@ -1,5 +1,5 @@
 <!-- Comment Form -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto" id='form'>
+<div class="max-w-[85rem] mx-auto" id='form'>
   <div class="mx-auto max-w-2xl">
     <div class="text-center">
       <h2 class="text-xl text-gray-800 font-bold sm:text-3xl">
@@ -9,14 +9,19 @@
 
     <!-- Card -->
     <div class="mt-5 p-4 relative z-10 bg-white border rounded-xl sm:mt-10 md:p-10 ">
-      <form hx-post='/helpdesk' hx-target='#form' >
+      <form hx-post='/helpdesk' hx-target='#form' hx-encoding='multipart/form-data'>
         <div class="mb-4 sm:mb-8">
-          <label for="email-input" class="block mb-2 text-sm font-medium"><%= gettext "Email" %></label>
-          <input type="email" name="email" id="email-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="bob@example.com" required>
+          <label for="name-input" class="block mb-2 text-sm font-medium"><%= gettext "Name" %> *</label>
+          <input required type="text" name="name" id="name-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder={"#{ gettext "Obi-Wan Kenobi" }"}>
         </div>
 
         <div class="mb-4 sm:mb-8">
-          <label for="itil-category-select" class="block mb-2 text-sm font-medium"><%= gettext "Issue Type" %></label>
+          <label for="email-input" class="block mb-2 text-sm font-medium"><%= gettext "Email" %> *</label>
+          <input required type="email" name="email" id="email-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="obi@kenobi.net">
+        </div>
+
+        <div class="mb-4 sm:mb-8">
+          <label for="itil-category-select" class="block mb-2 text-sm font-medium"><%= gettext "Issue Type" %> *</label>
         <select id="itil-category-select" name="itil" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
           <%= for category <- @itil_categories do %>
           <option value={category.id}><%= category.name %></option>
@@ -24,24 +29,37 @@
         </select>
         </div>
 
-<div class="mb-4 sm:mb-8">
-          <label for="location-select" class="block mb-2 text-sm font-medium"><%= gettext "Location" %></label>
-        <select id="location-select" name="location" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
-          <%= for location <- @locations do %>
-          <option value={location.id}><%= location.name %></option>
-          <% end %>
-        </select>
+        <div class="mb-4 sm:mb-8">
+          <label for="location-select" class="block mb-2 text-sm font-medium"><%= gettext "Location" %> *</label>
+          <select id="location-select" name="location" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+            <%= for location <- @locations do %>
+              <option value={location.id}><%= location.name %></option>
+            <% end %>
+          </select>
         </div>
 
-        <div>
-          <label for="content-textarea" class="block mb-2 text-sm font-medium"><%= gettext "Description" %></label>
+        <div class="mb-4 sm:mb-8">
+          <label for="room-input" class="block mb-2 text-sm font-medium"><%= gettext "Room" %></label>
+          <input type="text" name="room" id="room-input" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder={"#{ gettext "Reception" }"}>
+        </div>
+
+
+        <div class="mb-4 sm:mb-8">
+          <label for="content-textarea" class="block mb-2 text-sm font-medium"><%= gettext "Description" %> *</label>
           <div class="mt-1">
-            <textarea id="content-textarea" name="content" rows="3" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder={"#{ gettext "You can describe your issue in details here..." }"}></textarea>
+            <textarea required id="content-textarea" name="content" rows="3" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" placeholder={"#{ gettext "You can describe your issue in details here..." }"}></textarea>
+          </div>
+        </div>
+
+        <div class="mb-4 sm:mb-8">
+          <label for="file-input" class="block mb-2 text-sm font-medium"><%= gettext "Attach File" %></label>
+          <div class="mt-1">
+            <input multiple id="file" class="text-gray-400 font-semibold text-sm bg-white file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-100 file:hover:bg-gray-200 file:text-gray-500 rounded" type="file" name="file[]" accept="image/png, image/jpeg, image/tiff">
           </div>
         </div>
 
         <div class="mt-6 grid">
-          <button class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"><%= gettext "Submit" %></button>
+          <button tabindex="0" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"><%= gettext "Submit" %></button>
           <img id="loading" class="htmx-loading w-full size-12" src={~p"/images/loading.svg"} />
         </div>
       </form>

@@ -21,12 +21,12 @@ msgstr ""
 msgid "Attempting to reconnect"
 msgstr ""
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:37
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:48
 #, elixir-autogen, elixir-format
 msgid "Description"
 msgstr "Նկարագրություն"
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:14
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Email"
 msgstr "Էլփոստի հասցեն"
@@ -41,12 +41,12 @@ msgstr ""
 msgid "Hang in there while we get back on track"
 msgstr ""
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:19
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Issue Type"
 msgstr "Խնդրի տեսակ"
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:28
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Location"
 msgstr "Տարածք"
@@ -54,14 +54,14 @@ msgstr "Տարածք"
 #: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Report an issue"
-msgstr "Զեկուցել խնդրի մասին"
+msgstr "Տեղեկացնել խնդրի մասին"
 
 #: lib/glpi_anontickets_web/components/core_components.ex:167
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr ""
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:44
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:62
 #, elixir-autogen, elixir-format
 msgid "Submit"
 msgstr "Ուղարկել"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "We can't find the internet"
 msgstr ""
 
-#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:39
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "You can describe your issue in details here..."
 msgstr "Կարող եք մանրամասն նկարագրել ձեր խնդիրը այստեղ…"
@@ -90,4 +90,29 @@ msgstr ""
 #: lib/glpi_anontickets_web/controllers/page_html/submitted.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "Your request has been submitted!"
-msgstr "Ձեր զեկույցը ընդունված է"
+msgstr "Ձեր հայտը հաջողությամբ ուղարկվել է"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr "Անուն"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Obi-Wan Kenobi"
+msgstr "Պետրոս Պետրոսյան"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "Reception"
+msgstr "Ընդունարան"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:42
+#, elixir-autogen, elixir-format
+msgid "Room"
+msgstr "Սենյակ"
+
+#: lib/glpi_anontickets_web/controllers/page_html/helpdesk.html.heex:55
+#, elixir-autogen, elixir-format
+msgid "Attach File"
+msgstr "Կցել Ֆայլ"

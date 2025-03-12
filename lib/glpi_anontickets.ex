@@ -34,7 +34,7 @@ defmodule GlpiAnontickets do
       ]
     ) do
       {:ok, resp} ->
-        {:ok, resp.body |> Jason.decode! |> Enum.map(fn itil -> %{name: itil["completename"], id: itil["id"]} end)}
+        {:ok, resp.body |> Jason.decode! |> Enum.map(fn itil -> %{name: itil["completename"], id: itil["id"]} end) |> Enum.sort(&(&1.name < &2.name))}
       {:error, resp} ->
         {:error, resp}
     end
@@ -57,7 +57,7 @@ defmodule GlpiAnontickets do
       ]
     ) do
       {:ok, resp} ->
-        {:ok, resp.body |> Jason.decode! |> Enum.map(fn itil -> %{name: itil["completename"], id: itil["id"]} end)}
+        {:ok, resp.body |> Jason.decode! |> Enum.map(fn itil -> %{name: itil["name"], id: itil["id"]} end)  |> Enum.sort(&(&1.name < &2.name))}
       {:error, resp} ->
         {:error, resp}
     end
@@ -70,25 +70,101 @@ defmodule GlpiAnontickets do
     end
   end
 
+  def list_tickets(session_token) do
+    case HTTPoison.get(
+      URI.merge(@endpoint, "/apirest.php/Ticket"),
+      [
+        {"Content-Type", "application/json"},
+        {"App-Token", @app_token},
+        {"Session-Token", session_token},
+      ]
+    ) do
+      {:ok, resp} ->
+        {:ok, resp.body}
+      {:error, resp} ->
+        {:error, resp}
+    end
+  end
+
+  def list_tickets() do
+    case init_session() do
+      {:ok, resp} -> list_tickets(resp["session_token"])
+      {:error, resp} -> {:error, resp}
+    end
+  end
+
+  def list_documents(session_token) do
+    case HTTPoison.get(
+      URI.merge(@endpoint, "/apirest.php/Document"),
+      [
+        {"Content-Type", "application/json"},
+        {"App-Token", @app_token},
+        {"Session-Token", session_token},
+      ]
+    ) do
+      {:ok, resp} ->
+        {:ok, resp.body}
+      {:error, resp} ->
+        {:error, resp}
+    end
+  end
+
+  def list_documents() do
+    case init_session() do
+      {:ok, resp} -> list_documents(resp["session_token"])
+      {:error, resp} -> {:error, resp}
+    end
+  end
+
   def create_ticket(ticket, session_token) do
-    body = %{
+    email   = ticket["email"]
+    itil_id = ticket["itil"]
+    loc_id  = ticket["location"]
+    content = "Name: #{ticket["name"]}\nRoom: #{ticket["room"]}\n\n#{ticket["content"]}"
+
+    upload_manifest = %{
       "input" => %{
         "_users_id_requester" => 0,
         "_users_id_requester_notif" => %{
-          "alternative_email" => [ticket["email"]],
+          "alternative_email" => [email],
           "use_notification" => 1
         },
-        "content" => ticket["content"],
-        "name" => "",
-        "itilcategories_id" => ticket["itil"],
-        "locations_id" => ticket["location"]
+        "content" => content,
+        "name" => "#{ticket["name"]} | #{ticket["room"]}",
+        "itilcategories_id" => itil_id,
+        "locations_id" => loc_id
       }
     }
+
+    files =
+      (ticket["file"] || [])
+      |> Enum.with_index()
+      |> Enum.map(fn {file, index} ->
+        {:file, file.path, {"form-data", [{"name", "filename[#{index}]"}, {"filename", file.filename}]}, [{"Content-Type", file.content_type}]}
+      end)
+
+    {body, content_type} =
+      if Enum.empty?(files) do
+        {
+          Jason.encode!(upload_manifest),
+          "application/json"
+        }
+      else
+        {
+          {:multipart,
+            [
+              {"uploadManifest", Jason.encode!(upload_manifest), [{"Content-Type", "application/json"}]}
+            ] ++ files
+          },
+          "multipart/form-data"
+        }
+      end
+
     case HTTPoison.post(
       URI.merge(@endpoint, "apirest.php/Ticket"),
-      Jason.encode!(body),
+      body,
       [
-        {"Content-Type", "application/json"},
+        {"Content-Type", content_type},
         {"App-Token", @app_token},
         {"Session-Token", session_token},
       ]
